@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: IBOulets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backgroundIV: UIImageView!
     
     
     //MARK: Properties
@@ -24,6 +25,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +57,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     // Actualizar la interfaz de usuario después de obtener los superhéroes
                     DispatchQueue.main.async {
                         self.tableView.isHidden = false
+                        self.backgroundIV.isHidden = true
                         self.tableView.reloadData()
                     }
                 } catch {
@@ -69,6 +73,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }else if searchText.isEmpty {
             self.tableView.isHidden = true
+            self.backgroundIV.isHidden = false
         }
         
     }   //end searchBar
