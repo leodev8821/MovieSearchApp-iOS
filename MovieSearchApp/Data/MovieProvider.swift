@@ -29,7 +29,6 @@ class MovieProvider {
         guard let url = URL(string: baseURL + keySearch + title) else {
             throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
         }
-        print(url)
         let (data, _) = try await URLSession.shared.data(from: url)
         do {
             let decode = try JSONDecoder().decode(MovieResponse.self, from: data)
